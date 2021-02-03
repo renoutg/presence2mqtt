@@ -124,7 +124,7 @@ while True:
     result = requests.get(f'https://graph.microsoft.com/beta/me/presence', headers=headers, timeout=5)
     result.raise_for_status()
     jsonresult = result.json()
-    logger.debug("Got result: " + jsonresult)
+    logging.debug("Got result: " + jsonresult)
     client.publish(mqtt_availability_topic,jsonresult['availability'])
     client.publish(mqtt_activity_topic,jsonresult['activity'])
   except requests.exceptions.Timeout as timeerr:
