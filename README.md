@@ -10,18 +10,19 @@ The app will user the Graph API to retrieve your teams presence status, for this
 You need configure an azure tenant id and client id, these can be retrieved from an Azure app. 
 
 ### Registering an app in Azure
-Go to https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade 
-Choose New Registration
-Choose a name and register
-Go to API Permissions, click Add a permission, choose Microsoft Graph, then Delegated permissions, search for Presence.Read and add this. Do the same to add the offline_access permission.  
-Next go to the authentication and below Advanced settings set Allow public client flows to Yes
-In the Overview you will find your tenant id and client id   
-Depending on your organization settings it's possible an Administrator needs to approve the app   
+Go to https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade  
+Choose New Registration  
+Choose a name and register  
+Go to API Permissions, click Add a permission, choose Microsoft Graph, then Delegated permissions, search for Presence.Read and add this.  
+Do the same to add the offline_access permission.  
+Next go to the authentication and below Advanced settings set Allow public client flows to Yes  
+In the Overview you will find your tenant id and client id  
+Depending on your organization settings it's possible an Administrator needs to approve the app  
 
 ## Configuration
 This app requires a config.ini  
 Create a config directory and place a config.ini in there  
-Mount this config directory in the container on /config
+Mount this config directory in the container on /config  
 In the same config directory the authentication token cache will also be stored  
 
 Here's a minimal config file  
@@ -74,11 +75,11 @@ services:
 
 ## Logging in
 Next check the container logs for the authentication url and device id.  
-`docker logs -f presence2mqtt`
+`docker logs -f presence2mqtt`  
 Follow the url, enter the generated device id, log in and authorize your just created app  
 Go back to you container logs and you should now see your logged in  
 Your presence and activity will no be published to mqtt every 30 seconds  
-The authetication tokens are max 1 hour valid, the app will automtically renew the tokens  
+The authentication tokens are max 1 hour valid, the app will automtically renew the tokens  
 
 ## Home Assistant
 In home assistant mqtt sensors can easily be added, for example
@@ -93,7 +94,7 @@ sensor:
     state_topic: "presence2mqtt/activity"
 ```
 
-Now you will have a sensor available in HA and go nuts with automations based on your presence in mqtt  
+Now you will have a sensor available in HA and can go nuts with automations based on your presence in mqtt  
 
 
 ## Credits
