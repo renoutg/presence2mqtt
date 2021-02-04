@@ -3,11 +3,11 @@ Publish your teams presence to mqtt!
 
 Being in a lockdown and all I wanted to be able to switch lights based on if was in a meeting or not. This way my family members know if i'm in a meeting or not.  
 There are other solutons out there, but usually involve a windows client and have no integration with Home Assistant.  
-By using mqtt this s not only easy to use with Home Assitant, but also with domoticz or other devices which can subscribe to mqtt directly.  
+By using mqtt this is not only easy to use with Home Assitant, but also with domoticz or other devices which can subscribe to mqtt directly.  
 
 ## Azure
-The app will user the Graph API to retrieve your teams presence status, for this you need to log-in and also grant permissions to read your presence status.  
-You need configure an azure tenant id and client id, these can be retrieved from an Azure app. 
+The app will use the Graph API to retrieve your teams presence status, for this you need to log-in and also grant permissions to read your presence status.  
+You need to configure an azure tenant id and client id, these can be retrieved from an Azure app. 
 
 ### Registering an app in Azure
 Go to https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade  
@@ -77,8 +77,8 @@ services:
 Next check the container logs for the authentication url and device id.  
 `docker logs -f presence2mqtt`  
 Follow the url, enter the generated device id, log in and authorize your just created app  
-Go back to you container logs and you should now see your logged in  
-Your presence and activity will no be published to mqtt every 30 seconds  
+Go back to you container logs and you should now see you're logged in  
+Your presence and activity will now be published to mqtt every 30 seconds  
 The authentication tokens are max 1 hour valid, the app will automtically renew the tokens  
 
 ## Home Assistant
