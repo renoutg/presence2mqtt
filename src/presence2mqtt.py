@@ -115,7 +115,7 @@ def on_connect(client, userdata, flags, rc):
 Authorize()
 
 client = mqtt.Client(mqtt_client)
-client.on_connecti = onconnect
+client.on_connecti = on_connect
 
 try:
   mqtt_password    
