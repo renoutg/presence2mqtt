@@ -106,8 +106,17 @@ def Authorize():
     sleep(2)
     return False
 
+def on_connect(client, userdata, flags, rc):
+  if rc==0:
+    logging.info("Connected to mqtt server")
+  else:
+    logging.error("Connection returned result: "+connack_string(rc))
+
 Authorize()
+
 client = mqtt.Client(mqtt_client)
+client.on_connecti = onconnect
+
 try:
   mqtt_password    
 except NameError:
