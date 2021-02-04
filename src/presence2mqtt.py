@@ -34,6 +34,9 @@ if os.path.isfile("/config/config.ini"):
     log_level = config["Main"]["log_level"]
   else:
     log_level = 'INFO'
+ else:
+   print("config.ini not found!")
+   raise SystemExit(1)
 
 level = logging.getLevelName(log_level)
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d-%m-%y %H:%M:%S', level=level)
@@ -124,7 +127,7 @@ while True:
     result = requests.get(f'https://graph.microsoft.com/beta/me/presence', headers=headers, timeout=5)
     result.raise_for_status()
     jsonresult = result.json()
-    logging.debug("Got result: " + jsonresult)
+    logging.debug("Got result: " + str(jsonresult))
     client.publish(mqtt_availability_topic,jsonresult['availability'])
     client.publish(mqtt_activity_topic,jsonresult['activity'])
   except requests.exceptions.Timeout as timeerr:
