@@ -34,9 +34,9 @@ if os.path.isfile("/config/config.ini"):
     log_level = config["Main"]["log_level"]
   else:
     log_level = 'INFO'
- else:
-   print("config.ini not found!")
-   raise SystemExit(1)
+else:
+  print("config.ini not found!")
+  raise SystemExit(1)
 
 level = logging.getLevelName(log_level)
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d-%m-%y %H:%M:%S', level=level)
