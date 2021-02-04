@@ -94,3 +94,7 @@ sensor:
 ```
 
 Now you will have a sensor available in HA and go nuts with automations based on your presence in mqtt  
+
+
+## Credits
+The authentication logic is mostly borrowed from: https://github.com/maxi07/Teams-Presence
