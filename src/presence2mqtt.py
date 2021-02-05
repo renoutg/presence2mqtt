@@ -56,8 +56,6 @@ def Authorize():
     if os.path.exists('/config/token_cache.bin'):
       cache.deserialize(open('/config/token_cache.bin', 'r').read())
   
-    atexit.register(lambda: open('/config/token_cache.bin', 'w').write(cache.serialize()) if cache.has_state_changed else None)
-  
     app = msal.PublicClientApplication(client_id, authority=authority, token_cache=cache)
   
     accounts = app.get_accounts()
@@ -81,6 +79,7 @@ def Authorize():
       token_claim = result['id_token_claims']
       logging.info("Welcome " + token_claim.get('name') + "!")
       fullname = token_claim.get('name')
+      open('/config/token_cache.bin', 'w').write(cache.serialize())
       return True
     if 'access_token' in result:
       token = result['access_token']
@@ -90,6 +89,7 @@ def Authorize():
         y = result.json()
         fullname = y['givenName'] + " " + y['surname']
         logging.info("Token found, welcome " + y['givenName'] + "!")
+        open('/config/token_cache.bin', 'w').write(cache.serialize()) 
         return True
       except requests.exceptions.HTTPError as err:
         if err.response.status_code == 404:
